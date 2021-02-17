@@ -1,0 +1,42 @@
+plugins {
+    id 'org.springframework.boot' version '2.4.1'
+    id 'io.spring.dependency-management' version '1.0.10.RELEASE'
+    id 'java'
+    id 'war'
+
+}
+
+
+group = 'com.redis'
+version = '0.0.1-SNAPSHOT'
+sourceCompatibility = '1.8'
+
+configurations {
+    compileOnly {
+        extendsFrom annotationProcessor
+    }
+}
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    implementation group: 'org.json', name: 'json', version: '20140107'
+    implementation group: 'commons-io', name: 'commons-io', version: '2.8.0'
+    implementation 'org.springframework.boot:spring-boot-starter-web'
+    developmentOnly 'org.springframework.boot:spring-boot-devtools'
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
+    implementation 'org.springframework.boot:spring-boot-starter-security:2.4.1'
+    implementation group: 'redis.clients', name: 'jedis', version: '3.5.1'
+    providedRuntime 'org.springframework.boot:spring-boot-starter-tomcat'
+}
+
+test {
+    useJUnitPlatform()
+}
+
+apply plugin: 'application'
+apply plugin: "war"
+
+mainClassName = 'com.redis.basicredisleaderboarddemojava.BasicRedisLeaderLoardDemoJavaApplication'
