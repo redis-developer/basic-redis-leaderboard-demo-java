@@ -72,7 +72,7 @@ Problem with unsupported flags when deploying google cloud run button
     <li>Show ranks of AAPL, FB and TSLA: <pre>ZSCORE companyLeaderBoard company:AAPL company:FB company:TSLA</pre> </li>
     <!-- <li>Pagination: Show 1st 10 companies: <pre>ZSCAN 0 companyLeaderBoard COUNT 10 7.Pagination: Show next 10 companies: ZSCAN &lt;return value from the 1st 10 companies&gt; companyLeaderBoard COUNT 10 </li> -->
     <li>Adding 1 billion to market cap of FB company: <pre>ZINCRBY companyLeaderBoard 1000000000 "company:FB"</pre></li>
-    <li>Reducing 1 billion to market cap of FB company: <pre>ZINCRBY companyLeaderBoard -1000000000 "company:FB"</pre></li>
+    <li>Reducing 1 billion of market cap of FB company: <pre>ZINCRBY companyLeaderBoard -1000000000 "company:FB"</pre></li>
     <li>Companies between 500 billion and 1 trillion: <pre>ZCOUNT companyLeaderBoard 500000000000 1000000000000</pre></li>
     <li>Companies over a Trillion: <pre>ZCOUNT companyLeaderBoard 1000000000000 +inf</pre> </li>
 </ol>
