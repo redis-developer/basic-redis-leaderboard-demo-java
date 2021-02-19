@@ -53,10 +53,10 @@ Problem with unsupported flags when deploying google cloud run button
 # How it works?
 ## 1. How the data is stored:
 <ol>
-    <li>The company data is stored in a hash like below:
+    <li>The AAPL's details - market cap of 2,6 triillions and USA origin - are stored in a hash like below:
       <pre>HSET "company:AAPL" symbol "AAPL" market_cap "2600000000000" country USA</pre>
      </li>
-    <li>The Ranks are stored in a ZSET. 
+    <li>The Ranks of AAPL of 2,6 trillions are stored in a ZSET. 
       <pre>ZADD companyLeaderboard 2600000000000 company:AAPL</pre>
     </li>
 </ol>
