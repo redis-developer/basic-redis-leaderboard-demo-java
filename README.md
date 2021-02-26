@@ -95,12 +95,11 @@ docker network create global
 docker-compose up -d --build
 ```
 
-#### If you install redis manually open src/main/resources/ folder and provide the values for environment variables in application.properties
-    REDIS_URL=
-
-#### else  
-    copy .env.example .env
-    export $(cat .env | xargs)
+#### copy .env.example to create .env (copy .env.example .env  or cp .env.example .env) . And provide the values for environment variables (if needed)
+   	- REDIS_HOST: Redis server host
+	- REDIS_PORT: Redis server port
+	- REDIS_DB: Redis server db index
+	- REDIS_PASSWORD: Redis server password
 
 #### Run backend
 
@@ -110,6 +109,7 @@ Install gradle (on mac: https://gradle.org/install/)
 Install JDK (on mac: https://docs.oracle.com/javase/10/install/installation-jdk-and-jre-macos.htm)
 
 ``` sh
+export $(cat .env | xargs)
 gradle wrapper
 ./gradlew build
 ./gradlew run

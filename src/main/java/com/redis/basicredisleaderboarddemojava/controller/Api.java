@@ -19,7 +19,19 @@ import static com.redis.basicredisleaderboarddemojava.controller.Utils.*;
 @Component
 public class Api implements ApplicationListener<ContextRefreshedEvent> {
     @Value("${REDIS_URL}")
-    private String propertiesUri;
+    private String redisUrl;
+
+    @Value("${REDIS_HOST}")
+    private String redisHost;
+
+    @Value("${REDIS_PORT}")
+    private String redisPort;
+
+    @Value("${REDIS_PASSWORD}")
+    private String redisPassword;
+
+    @Value("${REDIS_DB}")
+    private String redisDB;
 
     @Value("${REDIS_LEADERBOARD}")
     private String redisLeaderboard;
@@ -92,7 +104,17 @@ public class Api implements ApplicationListener<ContextRefreshedEvent> {
     @Override
     public void onApplicationEvent(ContextRefreshedEvent event) {
         try {
-            jedis = new Jedis(propertiesUri);
+            if (!redisUrl.equals("")) {
+                jedis = new Jedis(redisUrl);
+            } else {
+                jedis = new Jedis(redisHost, Integer.parseInt(redisPort));
+            }
+            if (!redisPassword.equals("")){
+                jedis.auth(redisPassword);
+            }
+            if (!redisDB.equals("")){
+                jedis.select(Integer.parseInt(redisDB));
+            }
             resetData(Boolean.parseBoolean(
                     jedis.get(dataReadyRedisKey)),
                     jedis, dataReadyRedisKey,
