@@ -5,13 +5,13 @@ Show how the redis works with Java, Spring.
 ## Try it out
 
 <p>
-    <a href="https://heroku.com/deploy" target="_blank">
-        <img src="https://www.herokucdn.com/deploy/button.svg" alt="Deploy to Heorku" width="200px"/>
+    <a href="https://heroku.com/deploy?template=https://github.com/heroku/node-js-getting-started" target="_blank">
+        <img src="https://www.herokucdn.com/deploy/button.svg" alt="Deploy to Heroku" width="200px"/>
     <a>
 </p>
 
 <p>
-    <a href="https://deploy.cloud.run" target="_blank">
+    <a href="https://deploy.cloud.run?dir=server" target="_blank">
         <img src="https://deploy.cloud.run/button.svg" alt="Run on Google Cloud" width="200px"/>
     </a>
     (See notes: How to run on Google Cloud)
@@ -95,7 +95,7 @@ docker network create global
 docker-compose up -d --build
 ```
 
-#### copy .env.example to create .env (copy .env.example .env  or cp .env.example .env) . And provide the values for environment variables (if needed)
+#### Open directory server (cd server): copy .env.example to create .env (copy .env.example .env  or cp .env.example .env). And provide the values for environment variables (if needed)
    	- REDIS_HOST: Redis server host
 	- REDIS_PORT: Redis server port
 	- REDIS_DB: Redis server db index
@@ -103,14 +103,14 @@ docker-compose up -d --build
 
 #### Run backend
 
-Install gradle (on mac: https://gradle.org/install/)
+Install gradle (Use Gradle 6.3 or later) (on mac: https://gradle.org/install/) 
 
 
-Install JDK (on mac: https://docs.oracle.com/javase/10/install/installation-jdk-and-jre-macos.htm)
+Install JDK (use 8 version) (on mac: https://docs.oracle.com/javase/10/install/installation-jdk-and-jre-macos.htm)
 
 ``` sh
+cd server
 export $(cat .env | xargs)
-gradle wrapper
 ./gradlew build
 ./gradlew run
 ```
