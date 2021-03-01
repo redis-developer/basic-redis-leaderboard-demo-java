@@ -109,8 +109,6 @@ public class Api implements ApplicationListener<ContextRefreshedEvent> {
     @Override
     public void onApplicationEvent(ContextRefreshedEvent event) {
         try {
-            System.out.print("start");
-
             if (!redisUrl.equals("")) {
                 jedis = new Jedis(redisUrl);
             } else {
@@ -122,7 +120,6 @@ public class Api implements ApplicationListener<ContextRefreshedEvent> {
             if (!redisDB.equals("")){
                 jedis.select(Integer.parseInt(redisDB));
             }
-            System.out.print("start2");
             resetData(Boolean.parseBoolean(
                     jedis.get(dataReadyRedisKey)),
                     jedis, dataReadyRedisKey,

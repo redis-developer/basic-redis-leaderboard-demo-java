@@ -19,19 +19,13 @@ public class Utils {
                                    String redisLeaderboard, String keyPrefix) {
         boolean isOk = true;
         if (!isDataReady){
-            System.out.println("resetData");
-
             try {
                 JSONArray companyJsonArray = new JSONArray(readFile("src/main/resources/data.json"));
                 JSONObject companyJson;
                 String symbol;
-                System.out.println("resetData1");
-
                 for (int i = 0; i < companyJsonArray.length(); i++) {
                     companyJson = companyJsonArray.getJSONObject(i);
-                    System.out.println("resetData2");
                     symbol = addPrefix(keyPrefix, companyJson.get("symbol").toString().toLowerCase());
-                    System.out.println(symbol);
                     jedis.zadd(redisLeaderboard, Double.parseDouble(companyJson.get("marketCap").toString()), symbol);
                     jedis.hset(symbol, "company", companyJson.get("company").toString());
                     jedis.hset(symbol, "country", companyJson.get("country").toString());
