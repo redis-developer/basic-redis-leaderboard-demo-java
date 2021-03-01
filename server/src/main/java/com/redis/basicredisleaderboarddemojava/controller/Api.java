@@ -39,42 +39,47 @@ public class Api implements ApplicationListener<ContextRefreshedEvent> {
     @Value("${LEADERBOARD_DATA_READY}")
     private String dataReadyRedisKey;
 
+    @Value("${KEY_PREFIX}")
+    private String keyPrefix;
+
     Jedis jedis;
 
 
     @RequestMapping(value = "/api/list/top10", produces = { "text/html; charset=utf-8" })
     @ResponseBody
     public String getTop10() {
-        return getRedisDataZrevrangeWithScores(0, 9, jedis, redisLeaderboard);
+        return getRedisDataZrevrangeWithScores(0, 9, jedis, redisLeaderboard, keyPrefix);
     }
 
     @RequestMapping(value = "/api/list/all", produces = { "text/html; charset=utf-8" })
     @ResponseBody
     public String getAll() {
-        return getRedisDataZrevrangeWithScores(0, -1, jedis, redisLeaderboard);
+        return getRedisDataZrevrangeWithScores(0, -1, jedis, redisLeaderboard, keyPrefix);
     }
 
     @RequestMapping(value = "/api/list/bottom10", produces = { "text/html; charset=utf-8" })
     @ResponseBody
     public String get10() {
-        return getRedisDataZrangeWithScores(0, 9, jedis, redisLeaderboard);
+        return getRedisDataZrangeWithScores(0, 9, jedis, redisLeaderboard, keyPrefix);
     }
 
     @RequestMapping("/api/list/inRank")
     @ResponseBody
     public String getInRank(@RequestParam(name = "start") int start,
                             @RequestParam(name = "end") int end) {
-        return getRedisDataZrevrangeWithScores(start, end, jedis, redisLeaderboard);
+        return getRedisDataZrevrangeWithScores(start, end, jedis, redisLeaderboard, keyPrefix);
     }
 
     @RequestMapping("/api/list/getBySymbol")
     @ResponseBody
     public String getBySymbol(@RequestParam(name = "symbols") List<String> symbols) {
         List<JSONObject> list = new ArrayList<>();
+        String updateSymbol;
         for (String symbol : symbols) {
-            list.add(addDataToResult(jedis.hgetAll(symbol),
-                    jedis.zscore(redisLeaderboard, symbol).longValue(),
-                    symbol));
+            updateSymbol = addPrefix(keyPrefix, symbol);
+            list.add(addDataToResult(jedis.hgetAll(updateSymbol),
+                    jedis.zscore(redisLeaderboard, updateSymbol).longValue(),
+                    symbol, keyPrefix));
         }
         return list.toString();
     }
@@ -98,12 +103,14 @@ public class Api implements ApplicationListener<ContextRefreshedEvent> {
     @RequestMapping("/api/rank/reset")
     @ResponseBody
     public String reset() {
-        return resetData(false, jedis, dataReadyRedisKey, redisLeaderboard);
+        return resetData(false, jedis, dataReadyRedisKey, redisLeaderboard, keyPrefix);
     }
 
     @Override
     public void onApplicationEvent(ContextRefreshedEvent event) {
         try {
+            System.out.print("start");
+
             if (!redisUrl.equals("")) {
                 jedis = new Jedis(redisUrl);
             } else {
@@ -115,10 +122,11 @@ public class Api implements ApplicationListener<ContextRefreshedEvent> {
             if (!redisDB.equals("")){
                 jedis.select(Integer.parseInt(redisDB));
             }
+            System.out.print("start2");
             resetData(Boolean.parseBoolean(
                     jedis.get(dataReadyRedisKey)),
                     jedis, dataReadyRedisKey,
-                    redisLeaderboard);
+                    redisLeaderboard, keyPrefix);
         }
         catch (Exception ignored) {
         }
