@@ -85,13 +85,14 @@ public class Api implements ApplicationListener<ContextRefreshedEvent> {
     }
 
 
-    @RequestMapping(value = "/api/rank/update", method = RequestMethod.PATCH)
-    public String updateAmount(@RequestBody Map<String, Object> payload) {
+    @RequestMapping(value = "/api/rank/update")
+    public String updateAmount(@RequestParam(name = "symbol") String symbol,
+                               @RequestParam(name = "amount") Long amount) {
         boolean isOk = true;
         try {
             jedis.zincrby(redisLeaderboard,
-                    ((Long) payload.get("amount")).doubleValue(),
-                    payload.get("symbol").toString());
+                    (amount).doubleValue(),
+                    addPrefix(keyPrefix, symbol));
 
         }
         catch (Exception e) {
