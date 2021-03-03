@@ -106,7 +106,7 @@ docker-compose up -d --build
 Install gradle (Use Gradle 6.3 or later) (on mac: https://gradle.org/install/) 
 
 
-Install JDK (use 8 version) (on mac: https://docs.oracle.com/javase/10/install/installation-jdk-and-jre-macos.htm)
+Install JDK (use 8 or later version) (on mac: https://docs.oracle.com/javase/10/install/installation-jdk-and-jre-macos.htm)
 
 ``` sh
 cd server
