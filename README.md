@@ -117,5 +117,5 @@ export $(cat .env | xargs)
 
 #### Run frontend
 
-If you want to change the front or run it separately, go to the client folder and read the README there -> Static сontent runs automatically with the backend part. In case you need to run it separately, please see README in the [client](client) folder
+Static сontent runs automatically with the backend part. In case you need to run it separately, please see README in the [client](client) folder.
 
