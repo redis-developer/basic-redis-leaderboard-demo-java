@@ -115,3 +115,6 @@ export $(cat .env | xargs)
 ./gradlew run
 ```
 
+#### Frontend
+
+If you want to change the front or run it separately, go to the client folder and read the README there
