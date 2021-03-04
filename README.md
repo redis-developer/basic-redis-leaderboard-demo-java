@@ -1,6 +1,8 @@
-# Basic Redis Leaderboard Demo Java
+# Basic Redis Leaderboard Demo Java (Spring)
 
-Show how the redis works with Java, Spring.
+Show how the redis works with Java(Spring).
+
+![alt text](docs/screenshot001.png)
 
 ## Try it out
 
