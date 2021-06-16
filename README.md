@@ -1,6 +1,6 @@
 # Basic Redis Leaderboard Demo Java (Spring)
 
-Show how the redis works with Java (Spring).
+A basic leaderboard application using Redis and Java/Spring. The application models public companies and their market capitalization.
 
 ![alt text](https://github.com/redis-developer/basic-redis-leaderboard-demo-java/raw/master/docs/screenshot001.png)
 
@@ -23,7 +23,6 @@ Here's a short video that explains the project and how it uses Redis:
     </a>
     (See notes: How to run on Google Cloud)
 </p>
-
 
 ## How to run on Google Cloud
 
@@ -60,10 +59,10 @@ Problem with unsupported flags when deploying google cloud run button
 # How it works?
 ## 1. How the data is stored:
 <ol>
-    <li>The AAPL's details - market cap of 2,6 triillions and USA origin - are stored in a hash like below:
+    <li>Apple's market cap is modeled as follows:
       <pre> <a href="https://redis.io/commands/hset">HSET</a> "company:AAPL" symbol "AAPL" market_cap "2600000000000" country USA</pre>
      </li>
-    <li>The Ranks of AAPL of 2,6 trillions are stored in a <a href="https://redislabs.com/ebook/part-1-getting-started/chapter-1-getting-to-know-redis/1-2-what-redis-data-structures-look-like/1-2-5-sorted-sets-in-redis/">ZSET</a>. 
+    <li>A company's rank is stored using a <a href="https://redislabs.com/ebook/part-1-getting-started/chapter-1-getting-to-know-redis/1-2-what-redis-data-structures-look-like/1-2-5-sorted-sets-in-redis/">sorted set</a>. 
       <pre><a href="https://redis.io/commands/zadd">ZADD</a>  companyLeaderboard 2600000000000 company:AAPL</pre>
     </li>
 </ol>
@@ -87,43 +86,29 @@ Problem with unsupported flags when deploying google cloud run button
 
 ## How to run it locally?
 
-## Development
-
-```
-git clone 
-```
-
-### Run docker compose or install redis manually
-
-Install docker (on mac: https://docs.docker.com/docker-for-mac/install/)
-
-```sh
-docker network create global
-docker-compose up -d --build
-```
-
-#### Open directory server (cd server): copy .env.example to create .env (copy .env.example .env  or cp .env.example .env). And provide the values for environment variables (if needed)
+#### Open the files server/.env.example to see the available environment variables. You may set these variables when you start the application.
    	- REDIS_URL: Redis server url
     - REDIS_HOST: Redis server host
 	- REDIS_PORT: Redis server port
-	- REDIS_DB: Redis server db index
 	- REDIS_PASSWORD: Redis server password
 
 #### Run backend
 
-Install gradle (Use Gradle 6.3 or later) (on mac: https://gradle.org/install/) 
+1. Install gradle (Use Gradle 6.3 or later) (on mac: https://gradle.org/install/) 
 
+2. Install JDK (use 8 or later version) (on mac: https://docs.oracle.com/javase/10/install/installation-jdk-and-jre-macos.htm)
 
-Install JDK (use 8 or later version) (on mac: https://docs.oracle.com/javase/10/install/installation-jdk-and-jre-macos.htm)
+3. Set any relevant environment variables (if not connecting to Redis on localhost:6379). For example:
 
 ``` sh
+$ REDIS_PORT=6379
+```
+
+3. From the root directory of the project, run the following commands:
+``` sh
 cd server
-export $(cat .env | xargs)
 ./gradlew build
 ./gradlew run
 ```
 
-#### Run frontend
-
-Static сontent runs automatically with the backend part. In case you need to run it separately, please see README in the [client](client) folder.
-
+4. Point your browser to `localhost:5000`.
