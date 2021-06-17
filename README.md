@@ -2,14 +2,6 @@
 
 A basic leaderboard application using Redis and Java/Spring. The application models public companies and their market capitalization.
 
-![alt text](https://github.com/redis-developer/basic-redis-leaderboard-demo-java/raw/master/docs/screenshot001.png)
-
-# Overview video
-
-Here's a short video that explains the project and how it uses Redis:
-
-[![Watch the video on YouTube](https://github.com/redis-developer/basic-redis-leaderboard-demo-java/raw/master/docs/YTThumbnail.png)](https://www.youtube.com/watch?v=zzinHxdZ34I)
-
 ## Try it out
 
 <p>
