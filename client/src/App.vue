@@ -1,7 +1,7 @@
 <template>
   <v-app id="app" class="mt-0">
     <div style="position: absolute; top: -50px; right: 0px; width: 300px;">
-      <img src="https://redislabs.com/wp-content/uploads/2020/12/RedisLabs_Illustration_HomepageHero_v4.svg">
+      <img src="redistheme.svg">
     </div>
 
     <div style="height: 50px" />
