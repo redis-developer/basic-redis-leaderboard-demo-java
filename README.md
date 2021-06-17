@@ -43,7 +43,6 @@ Problem with unsupported flags when deploying google cloud run button
 ## How it works?
 
 
-# How it works?
 ## 1. How the data is stored:
 <ol>
     <li>Apple's market cap is modeled as follows:
