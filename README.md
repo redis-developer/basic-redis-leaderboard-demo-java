@@ -42,8 +42,6 @@ Problem with unsupported flags when deploying google cloud run button
 
 ## How it works?
 
-![How it works](https://github.com/redis-developer/basic-redis-leaderboard-demo-java/raw/master/docs/screenshot001.png)
-
 
 # How it works?
 ## 1. How the data is stored:
