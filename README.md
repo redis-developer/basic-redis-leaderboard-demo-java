@@ -23,21 +23,21 @@ A basic leaderboard application using Redis and Java/Spring. The application mod
     After successful deployment, you need to manually enable the vpc connector as shown in the pictures:
 </p>
 
-1. Open link google cloud console.
+1. Click on "Run on Google Cloud"
 
-![1 step](https://github.com/redis-developer/basic-redis-leaderboard-demo-java/raw/master/docs/1.png)
+![1 step](https://raw.githubusercontent.com/redis-developer/basic-redis-leaderboard-demo-java/master/docs/1.jpg)
 
-2. Click "Edit and deploy new revision" button.
+2. Click "Edit and deploy new revision" button and choose "Variables and Secrets".
 
-![2 step](https://github.com/redis-developer/basic-redis-leaderboard-demo-java/raw/master/docs/2.png)
+![2 step](https://raw.githubusercontent.com/redis-developer/basic-redis-leaderboard-demo-java/master/docs/2.jpg)
 
 3. Add environment.
 
-![3 step](https://github.com/redis-developer/basic-redis-leaderboard-demo-java/raw/master/docs/3.png)
+![3 step](https://raw.githubusercontent.com/redis-developer/basic-redis-leaderboard-demo-java/master/docs/3.jpg)
 
-4.  Select vpc-connector and deploy application.
+4.  Manage the traffic
 
-![4  step](https://github.com/redis-developer/basic-redis-leaderboard-demo-java/raw/master/docs/4.png)
+![4  step](https://github.com/redis-developer/basic-redis-leaderboard-demo-java/raw/master/docs/4.jpg)
 
 <a href="https://github.com/GoogleCloudPlatform/cloud-run-button/issues/108#issuecomment-554572173">
 Problem with unsupported flags when deploying google cloud run button
